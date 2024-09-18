@@ -1,6 +1,5 @@
 import { ACTIONS_CORS_HEADERS, ActionsJson } from "@solana/actions";
 
-//modifed to include referrer
 export const GET = async () => {
   const payload: ActionsJson = {
     rules: [
@@ -9,8 +8,9 @@ export const GET = async () => {
         apiPath: "/api/action",
       },
       {
+        //for referrer
         pathPattern: "/*",
-        apiPath: "/api/action/[referral]",
+        apiPath: "/api/action/*",
       },
       // fallback route
       {

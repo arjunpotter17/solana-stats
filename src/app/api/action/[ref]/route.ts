@@ -3,16 +3,18 @@ import { ACTIONS_CORS_HEADERS } from "@solana/actions";
 import { ActionGetResponse } from "@solana/actions-spec";
 import { NextRequest, NextResponse } from "next/server";
 
+
 //GET route to handle referral links
 
 export async function GET(req: NextRequest) {
     //get the referrer
-    const last = req.nextUrl.pathname.split('/').pop();
+    const { pathname } = new URL(req.url);
+    const last = pathname.split('/').pop();
     let ref:null | string = null;
     if(last && last.length > 42 && last.length < 46){
       ref = last;
     }
-  
+
     //set metaData
     let response: ActionGetResponse = {
       type: "action",
